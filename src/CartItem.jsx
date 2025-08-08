@@ -4,7 +4,7 @@ import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
 
 const CartItem = ({ onContinueShopping }) => {
-    alert("cart Items");
+    //alert("cart Items");
   const cart = useSelector(state => state.cart.items);
   //alert("cart : "+cart);
   const dispatch = useDispatch();
@@ -24,21 +24,23 @@ const CartItem = ({ onContinueShopping }) => {
 
   const handleDecrement = (item) => {
     if(item.quantity >1){
-         dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
+         dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
     }else{
-        dispatch(removeItem());
+        alert("handle remove ...: "+item)
+        dispatch(removeItem(item.name));
     }
   };
 
   const handleRemove = (item) => {
-    dispatch(removeItem());
+    alert("handle remove: "+item)
+    dispatch(removeItem(item.name));
   };
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
     return parseFloat(item.cost.substring(1)) * item.quantity;
   };
-  alert("div");
+  //alert("div");
   return (
    
     <div className="cart-container">
