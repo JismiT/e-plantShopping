@@ -23,7 +23,6 @@ export const CartSlice = createSlice({
   console.log(state.items);
 },
     removeItem: (state, action) => {
-        alert("remove item reducer :"+state.items)
         state.items = state.items.filter(item => item.name !== action.payload);
     },
     updateQuantity: (state, action) => {
